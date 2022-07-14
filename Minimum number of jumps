@@ -1,0 +1,49 @@
+//Minimum number of jumps 
+
+class Solution{
+  public:
+    int minJumps(int arr[], int n){
+        // Your code here
+        int start=0;
+        int jump =0 ;
+        int destination =0;
+        for (int i = 0 ; i < n-1 ; i++)
+        {
+            destination = max (destination , arr [i]+i);
+            if (start == i)
+            {
+                jump++;
+                if (destination <=i)
+                {
+                    return -1;
+                }
+                start = destination;
+            }
+        }
+        return jump;
+    }
+};
+
+//this solution should tle 
+class Solution{
+  public:
+    int minJumps(int arr[], int n){
+        // Your code here
+        int count =0;
+        int start=0;
+        for ( int i =0 ; i < n ; i+=start)
+       {
+           // int start=0;
+            
+            for (int i = start ; i < n; i+=start)
+            {
+                int temp = arr[start];
+                   start+=temp;
+                   
+                count++;
+                break;
+            }
+            
+        }
+       return count;
+    }
